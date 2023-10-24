@@ -10,26 +10,42 @@ const Root = () => {
     const getData = async () => {
         setLoading(true)
         try {
-            const { data } = await api.get('disk/resources',
-                {
-                    params: {
-                        path: code + '.zip'
-                    }
-                })
+            const { data: { items } } = await api.get('disk/resources/files', {
+                params: {
+                    limit: 100,
+                    media_type: 'compressed'
+                }
+            })
+            console.log(items.map(e => e.name.replace('.zip', '')))
 
-            if (!data.file)
-                setError({ message: 'Файл не найден' })
-            console.log(data)
+            try {
+                const { data } = await api.get('disk/resources',
+                    {
+                        params: {
+                            path: code + '.zip'
+                        }
+                    })
 
-            const downloadLink = document.createElement('a')
-            downloadLink.href = data.file
-            downloadLink.target = '_blank'
-            downloadLink.download = data.name
-            downloadLink.click()
+                if (!data.file)
+                    setError({ message: 'Архив не найден' })
+
+                console.log(items.map(e => e.name.replace('.zip', '')))
+                console.log(data)
+
+                const downloadLink = document.createElement('a')
+                downloadLink.href = data.file
+                downloadLink.target = '_blank'
+                downloadLink.download = data.name
+                downloadLink.click()
+            }
+            catch {
+                if (items.map(e => e.name.replace('.zip', '')).includes(code))
+                    setError({ message: 'Архив ещё не готов, попробуйте позже' })
+            }
         }
         catch (e) {
             console.error(e)
-            setError(e.response.data)
+            setError({ message: 'Получили ошибку с сервера, попробуйте позже' })
         }
         setLoading(false)
     }
