@@ -16,7 +16,16 @@ const Root = () => {
                         path: code + '.zip'
                     }
                 })
+
+            if (!data.file)
+                setError({ message: 'Файл не найден' })
             console.log(data)
+
+            const downloadLink = document.createElement('a')
+            downloadLink.href = data.file
+            downloadLink.target = '_blank'
+            downloadLink.download = data.name
+            downloadLink.click()
         }
         catch (e) {
             console.error(e)

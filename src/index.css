@@ -1,9 +1,9 @@
 :root {
-  --bg-color: #3a43b9;
-  --secondary-bg-color: #2a2aa5;
+  --bg-color: #57518c;
+  --secondary-bg-color: #43427A;
   --text-color: white;
   --hint-color: #e7e7e7;
-  --tg-theme-link-color: #ffd600;
+  --tg-theme-link-color: #ffb8b3;
   --tg-theme-button-text-color: #000;
   --tg-theme-button-color: #ffffffd4;
 }
@@ -17,6 +17,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: var(--secondary-bg-color);
+  background-image: url('./background.png');
+  background-repeat: repeat;
+  background-size: cover;
 }
 
 code {
