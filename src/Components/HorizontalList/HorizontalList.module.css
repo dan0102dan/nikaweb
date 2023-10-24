@@ -1,0 +1,10 @@
+.horizontal {
+    display: flex;
+    overflow-x: auto;
+    gap: 7px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.horizontal::-webkit-scrollbar {
+    display: none;
+}
