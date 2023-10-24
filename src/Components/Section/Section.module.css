@@ -1,0 +1,22 @@
+.section {
+    overflow-x: hidden;
+    margin-top: 16px;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+}
+
+.title {
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--secondary-bg-color);
+}
+
+.error {
+    border-top: 1px solid var(--secondary-bg-color);
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(250, 65, 89)
+}
