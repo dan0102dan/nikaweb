@@ -27,9 +27,8 @@ const Root = () => {
                     })
 
                 if (!data.file)
-                    setError({ message: 'Архив не найден' })
+                    setError({ message: 'Альбом не найден' })
 
-                console.log(items.map(e => e.name.replace('.zip', '')))
                 console.log(data)
 
                 const downloadLink = document.createElement('a')
@@ -41,18 +40,20 @@ const Root = () => {
             catch {
                 if (items.map(e => e.name.replace('.zip', '')).includes(code))
                     setError({ message: 'Архив ещё не готов, попробуйте позже' })
+
+                setError({ message: 'Проверьте правильность номера альбома' })
             }
         }
         catch (e) {
-            console.error(e)
             setError({ message: 'Получили ошибку с сервера, попробуйте позже' })
+            console.error(e)
         }
         setLoading(false)
     }
 
     return (
         <>
-            <Header address={'г.Москва и МО '} name={'Фотостудия НИКА'} email={'irina.foto6@yandex.ru'} />
+            <Header email={'irina.foto6@yandex.ru'} />
             <Section title='Введите код фотосъемки' error={error.message}>
                 <InputCode value={code}
                     onChange={(e) => setCode(e.target.value)}
