@@ -1,31 +1,93 @@
 .header {
     background-color: var(--bg-color);
-    padding: 18px;
-    text-align: center;
-    border-radius: 0 0 8px 8px;
+    padding: 2rem;
+    border-radius: 0 0 4rem 4rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    animation: borderRadiusFlow 30s ease-in-out infinite;
 }
 
-.title h1 {
-    color: var(--text-color);
-    font-size: 28px;
-    margin: 0;
+.content {
+    flex: 1 1 50%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.info {
-    text-align: right;
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
-.info p {
+.highlight {
     color: var(--hint-color);
-    font-size: 18px;
-    margin: 0;
 }
 
-.info a {
-    color: var(--tg-theme-link-color);
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--link-color);
     text-decoration: none;
+}
+
+.imageContainer {
+    flex: 1 1 40%;
+    /* Занимает до 40% доступного пространства и может сжиматься */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #FFD700;
+    background-size: cover;
+    /* Замените contain на cover для более гибкого масштабирования */
+    background-position: center;
+}
+
+.image:first-child {
+    background-image: url('text.png');
+}
+
+@media screen and (max-width: 455px) {
+    .header {
+        flex-direction: column;
+        /* Располагает элементы вертикально на маленьких экранах */
+        text-align: center;
+    }
+
+    .content, .imageContainer {
+        flex: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    .image {
+        width: 100px;
+        height: 100px;
+        margin-top: 1rem;
+    }
+}
+
+@keyframes borderRadiusFlow {
+    25% {
+        border-radius: 0 0 2rem 4rem;
+    }
+
+    50% {
+        border-radius: 0 0 4rem 2rem;
+    }
+
+    75% {
+        border-radius: 0 0 2rem 4rem;
+    }
 }

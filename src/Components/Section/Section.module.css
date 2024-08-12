@@ -1,10 +1,14 @@
 .section {
     overflow-x: hidden;
-    margin-top: 16px;
-    border-radius: 8px;
+    margin: 16px 12px 0 12px;
     background-color: var(--bg-color);
+    text-align: center;
+    position: relative;
+    border-radius: 4rem;
+    animation: borderRadiusFlow 35s ease-in-out infinite;
 }
 
+/* Стили для заголовка и ошибки */
 .title {
     padding: 16px;
     font-size: 20px;
@@ -18,5 +22,20 @@
     padding: 16px;
     font-size: 20px;
     font-weight: bold;
-    color: rgb(250, 68, 68)
+    color: rgb(250, 68, 68);
+}
+
+/* Анимация border-radius с плавным изменением углов */
+@keyframes borderRadiusFlow {
+    25% {
+        border-radius: 4rem 2rem 2rem 4rem;
+    }
+
+    50% {
+        border-radius: 2rem 4rem 4rem 2rem;
+    }
+
+    75% {
+        border-radius: 2rem 4rem 2rem 4rem;
+    }
 }
