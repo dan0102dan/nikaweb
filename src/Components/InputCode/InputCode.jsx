@@ -30,7 +30,7 @@ const InputCode = ({ value, onChange, onConfirm }) => {
                 <div className={styles.hintOverlay} onClick={toggleHint}>
                     <div className={styles.hintContent} onClick={(e) => e.stopPropagation()}>
                         <img src={example} alt='' className={styles.hintImage} />
-                        <p>Ваш код находится на обратной стороне самого большого фото (формат А4).</p>
+                        <p>Ваш номер находится на обратной стороне самого большого фото (формат А4).</p>
                         <button className={styles.closeButton} onClick={toggleHint}>
                             Закрыть
                         </button>
