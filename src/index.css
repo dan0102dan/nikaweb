@@ -1,11 +1,11 @@
 :root {
-  --bg-color: #FFF0F5;
-  --secondary-bg-color: #F4B6DB;
-  --text-color: #000;
-  --hint-color: #FFA500;
-  --link-color: #ed6c39;
-  --button-text-color: #000;
-  --button-bg: #ffdc9bd5;
+  --bg-color: #F7F7F7;
+  --secondary-bg-color: #FFFFFF;
+  --text-color: #333333;
+  --hint-color: #6B5B95;
+  --link-color: #FF6F61;
+  --button-text-color: #FFFFFF;
+  --button-bg: #FF6F61;
 }
 
 @font-face {
@@ -15,8 +15,7 @@
 
 body {
   margin: 0;
-  font-family: 'Chalkboard SE', 'ChalkboardSE', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'PT Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

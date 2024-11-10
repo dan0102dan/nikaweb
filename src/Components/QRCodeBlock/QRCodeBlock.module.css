@@ -1,0 +1,28 @@
+.qrBlock {
+    background-color: var(--secondary-bg-color);
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 24px;
+}
+
+.qrImage {
+    width: 270px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.qrImage:hover {
+    transform: scale(1.05);
+}

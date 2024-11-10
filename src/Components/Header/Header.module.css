@@ -1,12 +1,11 @@
 .header {
     background-color: var(--bg-color);
     padding: 2rem;
-    border-radius: 0 0 4rem 4rem;
+    border-radius: 0 0 32px 32px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    animation: borderRadiusFlow 30s ease-in-out infinite;
 }
 
 .content {
@@ -28,6 +27,22 @@
 .subtitle {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+}
+
+.emailLink {
+    color: var(--link-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.emailLink:hover {
+    text-decoration: underline;
+}
+
+.icon {
+    margin-top: auto;
+    margin-right: 8px;
 }
 
 a {
@@ -54,10 +69,6 @@ a {
     background-position: center;
 }
 
-.image:first-child {
-    background-image: url('text.png');
-}
-
 @media screen and (max-width: 455px) {
     .header {
         flex-direction: column;
@@ -75,19 +86,5 @@ a {
         width: 100px;
         height: 100px;
         margin-top: 1rem;
-    }
-}
-
-@keyframes borderRadiusFlow {
-    25% {
-        border-radius: 0 0 2rem 4rem;
-    }
-
-    50% {
-        border-radius: 0 0 4rem 2rem;
-    }
-
-    75% {
-        border-radius: 0 0 2rem 4rem;
     }
 }
