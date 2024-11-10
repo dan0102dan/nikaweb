@@ -14,20 +14,50 @@ const Root = () => {
         setSuccess('')
 
         if (!code.trim()) {
-            setError('Пожалуйста, введите код.')
+            setError('Пожалуйста, введите номер.')
             setLoading(false)
             return
         }
 
+        async function fetchAllFiles () {
+            const limit = 100
+            let offset = 0
+            let allItems = []
+            let hasMore = true
+
+            try {
+                while (hasMore) {
+                    const response = await api.get('disk/resources/public', {
+                        params: {
+                            limit: limit,
+                            type: 'dir',
+                            offset: offset,
+                            fields: 'name'
+                        },
+                    })
+
+                    const { items } = response.data
+
+                    if (items && items.length > 0) {
+                        allItems = allItems.concat(items)
+                        offset += limit
+                    } else {
+                        hasMore = false
+                    }
+                }
+
+                console.log(`Всего получено элементов: ${allItems.length}`)
+                return allItems
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error)
+                throw error
+            }
+        }
+
         try {
-            const {
-                data: { items },
-            } = await api.get('disk/resources/files', {
-                params: {
-                    limit: 100,
-                    media_type: 'compressed',
-                },
-            })
+            const items = await fetchAllFiles()
+            console.log(items)
+            console.log(items.find(e => e.name.includes('3S2410')))
 
             const availableCodes = items.map((e) => e.name.replace('.zip', '').toUpperCase())
 
@@ -74,7 +104,7 @@ const Root = () => {
         <>
             <Header email="irina.foto6@yandex.ru" />
             <Section
-                title="Введите номер Вашей индивидуальной фотографии (подсказка)"
+                title="Введите номер Вашей индивидуальной фотографии"
                 error={error}
                 success={success}
             >

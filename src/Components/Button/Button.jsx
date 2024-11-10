@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as Spinner } from './spinner.svg'
+import { FaSpinner } from 'react-icons/fa'
 import styles from './Button.module.css'
 
 const Button = ({ children, onClick, loading }) => {
@@ -8,7 +8,7 @@ const Button = ({ children, onClick, loading }) => {
             className={styles.button}
             onClick={onClick}
         >
-            {loading ? <Spinner className={styles.spinner} /> : children}
+            {loading ? <FaSpinner className={styles.spinner} /> : children}
         </button>
     )
 }

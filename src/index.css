@@ -2,15 +2,10 @@
   --bg-color: #F7F7F7;
   --secondary-bg-color: #FFFFFF;
   --text-color: #333333;
-  --hint-color: #deca17;
+  --hint-color: #f3ce00;
   --link-color: #FF6F61;
   --button-text-color: #FFFFFF;
   --button-bg: #FF6F61;
-}
-
-@font-face {
-  font-family: 'ChalkboardSE';
-  src: url('fonts/ChalkboardSE-Regular.ttf');
 }
 
 body {
