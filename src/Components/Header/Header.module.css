@@ -52,7 +52,6 @@ a {
 
 .imageContainer {
     flex: 1 1 40%;
-    /* Занимает до 40% доступного пространства и может сжиматься */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +64,6 @@ a {
     border-radius: 50%;
     background-color: #FFD700;
     background-size: cover;
-    /* Замените contain на cover для более гибкого масштабирования */
     background-position: center;
 }
 
