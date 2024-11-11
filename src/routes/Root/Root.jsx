@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Header, Section, InputCode, Button, QRCodeBlock } from '../../Components/index'
 import { api } from '../../API'
+import { default as names } from './names'
 
 const Root = () => {
     const [code, setCode] = useState('')
@@ -19,50 +20,11 @@ const Root = () => {
             return
         }
 
-        async function fetchAllFiles () {
-            const limit = 100
-            let offset = 0
-            let allItems = []
-            let hasMore = true
-
-            try {
-                while (hasMore) {
-                    const response = await api.get('disk/resources/public', {
-                        params: {
-                            limit: limit,
-                            type: 'dir',
-                            offset: offset,
-                            fields: 'name'
-                        },
-                    })
-
-                    const { items } = response.data
-
-                    if (items && items.length > 0) {
-                        allItems = allItems.concat(items)
-                        offset += limit
-                    } else {
-                        hasMore = false
-                    }
-                }
-
-                console.log(`Всего получено элементов: ${allItems.length}`)
-                return allItems
-            } catch (error) {
-                console.error('Ошибка при получении данных:', error)
-                throw error
-            }
-        }
-
         try {
-            const items = await fetchAllFiles()
-            console.log(items)
-            console.log(items.find(e => e.name.includes('3S2410')))
-
-            const availableCodes = items.map((e) => e.name.replace('.zip', '').toUpperCase())
+            const availableCodes = names.map((e) => e.replace('.zip', '').toUpperCase())
 
             if (!availableCodes.includes(code.toUpperCase())) {
-                setError('Код не найден. Проверьте правильность ввода.')
+                setError('Номер не найден. Проверьте правильность ввода.')
                 setLoading(false)
                 return
             }
@@ -74,12 +36,6 @@ const Root = () => {
                     },
                 })
 
-                if (!data.file) {
-                    setError('Альбом еще не готов. Попробуйте позже.')
-                    setLoading(false)
-                    return
-                }
-
                 const downloadLink = document.createElement('a')
                 downloadLink.href = data.file
                 downloadLink.target = '_blank'
@@ -89,7 +45,7 @@ const Root = () => {
                 setSuccess('Загрузка началась. Спасибо!')
                 setError('')
             } catch (error) {
-                setError('Ошибка при получении файла. Попробуйте позже.')
+                setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
                 console.error(error)
             }
         } catch (error) {
