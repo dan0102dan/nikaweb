@@ -37,7 +37,7 @@ const Root = () => {
                 })
 
                 const downloadLink = document.createElement('a')
-                downloadLink.href = data.file
+                downloadLink.href = data.public_url
                 downloadLink.target = '_blank'
                 downloadLink.download = data.name
                 downloadLink.click()
