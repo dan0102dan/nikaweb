@@ -34,9 +34,9 @@ async function fetchAllFiles () {
 
         fs.writeFileSync('src/routes/Root/names.json', JSON.stringify(names, null, 2))
         console.log('Файл names.json успешно сохранен.')
-    } catch (error) {
-        console.error('Ошибка при получении данных:', error)
-        throw error
+    } catch (e) {
+        console.error('Ошибка при получении данных:', e)
+        throw e
     }
 }
 
