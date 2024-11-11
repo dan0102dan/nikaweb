@@ -1,7 +1,7 @@
 {
   "name": "nikaweb",
   "author": "dan0102dan",
-  "homepage": "https://nikafoto6.ru",
+  "homepage": "https://dan0102dan.github.io/nikaweb",
   "version": "0.1.1",
   "dependencies": {
     "@types/node": "^16.18.54",
@@ -12,8 +12,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "HTTPS=false react-scripts start",
@@ -39,6 +38,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   }
 }
