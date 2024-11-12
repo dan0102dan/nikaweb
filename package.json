@@ -4,10 +4,10 @@
   "homepage": "https://nikafoto6.ru",
   "version": "0.1.1",
   "dependencies": {
-    "@types/node": "^16.18.54",
+    "@types/node": "^22.9.0",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "axios": "^1.6.0",
+    "axios": "^1.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.3.0",
@@ -38,8 +38,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
