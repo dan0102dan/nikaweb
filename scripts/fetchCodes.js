@@ -30,9 +30,9 @@ async function fetchAllFiles () {
 
         console.log(`Всего получено элементов: ${allItems.length}`)
 
-        const names = allItems.map((item) => item.name)
+        const names = allItems.map((item) => item.name.replace('.zip', '').toUpperCase())
 
-        fs.writeFileSync('src/routes/Root/names.json', JSON.stringify(names, null, 2))
+        fs.writeFileSync('src/routes/Root/names.json', JSON.stringify(names))
         console.log('Файл names.json успешно сохранен.')
     } catch (e) {
         console.error('Ошибка при получении данных:', e)
