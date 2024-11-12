@@ -14,41 +14,43 @@ const Root = () => {
         setError('')
         setSuccess('')
 
-        if (!code.trim()) {
+        const inputCode = code.trim().toUpperCase()
+
+        if (!inputCode) {
             setError('Пожалуйста, введите номер.')
             setLoading(false)
             return
         }
 
+        if (!names.includes(inputCode)) {
+            setError('Номер не найден. Проверьте правильность ввода.')
+            setLoading(false)
+            return
+        }
+
+        const newWindow = window.open('', '_blank')
+
         try {
-            if (!names.includes(code.toUpperCase())) {
-                setError('Номер не найден. Проверьте правильность ввода.')
+            const { data } = await api.get('disk/resources', {
+                params: {
+                    path: inputCode + '.zip',
+                },
+            })
+
+            if (!data.public_url) {
+                setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
+                newWindow.close()
                 setLoading(false)
                 return
             }
 
-            try {
-                const { data } = await api.get('disk/resources', {
-                    params: {
-                        path: code.toUpperCase() + '.zip',
-                    },
-                })
+            newWindow.location.href = data.public_url
 
-                //const downloadLink = document.createElement('a')
-                //downloadLink.href = data.public_url
-                //downloadLink.target = '_blank'
-                //downloadLink.download = data.name
-                window.open(data.public_url, "_blank");
-
-                setSuccess('Загрузка началась. Спасибо!')
-                setError('')
-            } catch (error) {
-                setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
-                console.error(error)
-            }
-        } catch (error) {
-            setError('Произошла ошибка. Попробуйте позже.')
-            console.error(error)
+            setSuccess('Загрузка началась. Спасибо!')
+        } catch (e) {
+            setError('Ошибка при загрузке файла. Попробуйте позже.')
+            console.error(e)
+            newWindow.close()
         } finally {
             setLoading(false)
         }
