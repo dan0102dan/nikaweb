@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Header, Section, InputCode, Button, QRCodeBlock } from '../../Components/index'
 import { api } from '../../API'
+import { IoDownload } from "react-icons/io5"
 import { default as names } from './names'
 
 const Root = () => {
@@ -16,8 +17,8 @@ const Root = () => {
 
         const inputCode = code.trim().toUpperCase()
 
-        if (!inputCode) {
-            setError('Пожалуйста, введите номер.')
+        if (!inputCode || (/\W/).test(inputCode)) {
+            setError('Пожалуйста, введите корректный номер.')
             setLoading(false)
             return
         }
@@ -34,7 +35,7 @@ const Root = () => {
             const { data } = await api.get('disk/resources', {
                 params: {
                     path: inputCode + '.zip',
-                },
+                }
             })
 
             if (!data.public_url) {
@@ -48,7 +49,7 @@ const Root = () => {
 
             setSuccess('Загрузка началась. Спасибо!')
         } catch (e) {
-            setError('Ошибка при загрузке файла. Попробуйте позже.')
+            setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
             console.error(e)
             newWindow.close()
         } finally {
@@ -69,7 +70,7 @@ const Root = () => {
                     onChange={(e) => setCode(e.target.value)}
                     onConfirm={() => getData()}
                 />
-                <Button loading={loading} onClick={() => getData()}>
+                <Button loading={loading} onClick={() => getData()} icon={<IoDownload />}>
                     {loading ? 'Загрузка...' : 'Скачать'}
                 </Button>
             </Section>
