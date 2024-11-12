@@ -9,7 +9,7 @@ const QRCodeBlock = () => {
             title="Присоединяйтесь к нам в Telegram!">
             <div className={styles.subtitle}>Сканируйте QR-код или нажмите на него, чтобы перейти в наш канал.</div>
             <a href="https://t.me/fotonika" target="_blank" rel="noopener noreferrer">
-                <img src={QRCode} alt="QR Code to Telegram" loading='lazy' className={styles.qrImage} />
+                <img src={QRCode} alt="QR Code в Telegram" className={styles.qrImage} />
             </a>
         </Section>
     )
