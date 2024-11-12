@@ -36,7 +36,7 @@ const InputCode = ({ value, onChange, onConfirm }) => {
                     className={styles.hintContent}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <img src={example} alt="" className={styles.hintImage} />
+                    <img src={example} alt='Пример номера' className={styles.hintImage} />
                     <p>Ваш номер находится на обратной стороне самого большого фото (формат А4).</p>
                     <Button onClick={toggleHint}>
                         Закрыть
