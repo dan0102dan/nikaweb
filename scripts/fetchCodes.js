@@ -18,7 +18,6 @@ async function fetchAllFiles () {
             })
 
             const { items } = response.data
-            console.log(`Уже найдено: ${allItems.length}`)
 
             if (items && items.length > 0) {
                 allItems = allItems.concat(items.map(({ name, path, public_url }) => {
@@ -34,6 +33,7 @@ async function fetchAllFiles () {
             } else {
                 hasMore = false
             }
+            console.log(`Архивов найдено: ${allItems.length}`)
         }
 
         console.log(`Всего получено элементов: ${allItems.length}`)
