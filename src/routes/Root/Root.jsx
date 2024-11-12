@@ -21,9 +21,7 @@ const Root = () => {
         }
 
         try {
-            const availableCodes = names.map((e) => e.replace('.zip', '').toUpperCase())
-
-            if (!availableCodes.includes(code.toUpperCase())) {
+            if (!names.includes(code.toUpperCase())) {
                 setError('Номер не найден. Проверьте правильность ввода.')
                 setLoading(false)
                 return
