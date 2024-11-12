@@ -21,7 +21,15 @@ async function fetchAllFiles () {
             console.log(`Уже найдено: ${allItems.length}`)
 
             if (items && items.length > 0) {
-                allItems = allItems.concat(items)
+                allItems = allItems.concat(items.map(({ name, path, public_url }) => {
+                    const transformedName = name.replace('.zip', '').toUpperCase()
+
+                    if (path === `disk:/${name}`)
+                        return { name: transformedName, public_url }
+
+                    return { name: transformedName }
+                }))
+
                 offset += limit
             } else {
                 hasMore = false
@@ -30,10 +38,8 @@ async function fetchAllFiles () {
 
         console.log(`Всего получено элементов: ${allItems.length}`)
 
-        const names = allItems.map((item) => item.name.replace('.zip', '').toUpperCase())
-
-        fs.writeFileSync('src/routes/Root/names.json', JSON.stringify(names))
-        console.log('Файл names.json успешно сохранен.')
+        fs.writeFileSync('src/routes/Root/data.json', JSON.stringify(allItems))
+        console.log('Файл data.json успешно сохранен.')
     } catch (e) {
         console.error('Ошибка при получении данных:', e)
         throw e

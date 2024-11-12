@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Header, Section, InputCode, Button, QRCodeBlock } from '../../Components/index'
-import { api } from '../../API'
 import { IoDownload } from "react-icons/io5"
-import { default as names } from './names'
+import { default as data } from './data'
 
 const Root = () => {
     const [code, setCode] = useState('')
@@ -17,44 +16,35 @@ const Root = () => {
 
         const inputCode = code.trim().toUpperCase()
 
-        if (!inputCode || (/\W/).test(inputCode)) {
+        if (!inputCode || /\W/.test(inputCode)) {
             setError('Пожалуйста, введите корректный номер.')
             setLoading(false)
             return
         }
 
-        if (!names.includes(inputCode)) {
-            setError('Номер не найден. Проверьте правильность ввода.')
+        if (!data || !data.length) {
+            setError('Данные недоступны. Попробуйте позже.')
             setLoading(false)
             return
         }
 
-        const newWindow = window.open('', '_blank')
+        const foundCode = data.find(e => e.name === inputCode)
 
-        try {
-            const { data } = await api.get('disk/resources', {
-                params: {
-                    path: inputCode + '.zip',
-                }
-            })
-
-            if (!data.public_url) {
-                setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
-                newWindow.close()
-                setLoading(false)
-                return
-            }
-
-            newWindow.location.href = data.public_url
-
-            setSuccess('Загрузка началась. Спасибо!')
-        } catch (e) {
-            setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
-            console.error(e)
-            newWindow.close()
-        } finally {
+        if (!foundCode) {
+            setError('Номер не найден. Проверьте правильность ввода.')
             setLoading(false)
+            return
         }
+        else if (!foundCode.public_url) {
+            setError('Доступ к скачиванию ещё закрыт. Попробуйте позже.')
+            setLoading(false)
+            return
+        }
+
+        window.open(foundCode.public_url, '_blank')
+
+        setSuccess('Загрузка началась. Спасибо!')
+        setLoading(false)
     }
 
     return (
