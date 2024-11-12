@@ -34,11 +34,11 @@ const Root = () => {
                     },
                 })
 
-                const downloadLink = document.createElement('a')
-                downloadLink.href = data.public_url
-                downloadLink.target = '_blank'
-                downloadLink.download = data.name
-                downloadLink.click()
+                //const downloadLink = document.createElement('a')
+                //downloadLink.href = data.public_url
+                //downloadLink.target = '_blank'
+                //downloadLink.download = data.name
+                window.open(data.public_url, "_blank");
 
                 setSuccess('Загрузка началась. Спасибо!')
                 setError('')
