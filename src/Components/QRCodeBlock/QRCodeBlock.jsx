@@ -1,7 +1,7 @@
 import React from 'react'
 import { Section } from '../index'
 import styles from './QRCodeBlock.module.css'
-import QRCode from './t_me-fotonika.png'
+import QRCode from './t_me-fotonika.jpg'
 
 const QRCodeBlock = () => {
     return (
