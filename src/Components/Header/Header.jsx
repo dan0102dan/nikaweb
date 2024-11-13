@@ -8,7 +8,7 @@ const Header = ({ email }) => {
         <div className={styles.header}>
             <div className={styles.content}>
                 <div className={styles.title}>
-                    Фотостудия <span className={styles.highlight}>"НИКА"</span>
+                    Фотостудия <span className={styles.highlight}>«НИКА»</span>
                 </div>
                 <div className={styles.subtitle} style={{ marginBottom: 2 }}>Выездные фотосъёмки в школах и детских садах</div>
                 <div className={styles.subtitle}>г. Москва и Московская область</div>
