@@ -17,25 +17,33 @@ const InputCode = ({ value, onChange, onConfirm }) => {
 
     return (
         <div className={styles.inputContainer}>
-            <input
-                type="text"
-                maxLength="8"
-                value={value}
-                onChange={onChange}
-                onKeyDown={(e) => ['Enter', 'Tab'].includes(e.key) && onConfirm(e)}
-                placeholder="Ваш номер"
-                className={styles.input}
-            />
-            <FaQuestionCircle className={styles.hintIcon} onClick={toggleHint} />
+            <div className={styles.inputRow}>
+                <input
+                    type="text"
+                    maxLength="12"
+                    value={value}
+                    onChange={onChange}
+                    onKeyDown={(e) => ['Enter', 'Tab'].includes(e.key) && onConfirm(e)}
+                    placeholder="Ваш номер, например: 14.1R1512"
+                    className={styles.input}
+                />
+                <button className={styles.hintButton} onClick={toggleHint}>
+                    <FaQuestionCircle className={styles.hintIcon} />
+                </button>
+            </div>
+
+            <div className={styles.hintTextBlock}>
+                Номер фотографии можно найти на А4, который был выдан Вам после фотосъёмки.{' '}
+                <span className={styles.hintLink} onClick={toggleHint}>
+                    Где найти номер?
+                </span>
+            </div>
 
             <div
                 className={`${styles.hintOverlay} ${showHint ? styles.show : ''}`}
                 onClick={toggleHint}
             >
-                <div
-                    className={styles.hintContent}
-                    onClick={(e) => e.stopPropagation()}
-                >
+                <div className={styles.hintContent} onClick={(e) => e.stopPropagation()}>
                     <img src={example} alt='Пример номера' className={styles.hintImage} />
                     <p>Ваш номер находится на обратной стороне самого большого фото (формат А4).</p>
                     <Button onClick={toggleHint}>
