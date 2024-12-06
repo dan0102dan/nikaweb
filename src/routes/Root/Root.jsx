@@ -51,7 +51,7 @@ const Root = () => {
         <>
             <Header email="irina.foto6@yandex.ru" />
             <Section
-                title="Введите номер Вашей индивидуальной фотографии"
+                title="Введите номер Вашей индивидуальной фотографии, который находится на обратной стороне фото А4"
                 error={error}
                 success={success}
             >
