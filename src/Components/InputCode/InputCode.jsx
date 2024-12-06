@@ -24,7 +24,7 @@ const InputCode = ({ value, onChange, onConfirm }) => {
                     value={value}
                     onChange={onChange}
                     onKeyDown={(e) => ['Enter', 'Tab'].includes(e.key) && onConfirm(e)}
-                    placeholder="Ваш номер, например: 14.1R1512"
+                    placeholder="Ваш номер, например: 14.3S2613"
                     className={styles.input}
                 />
                 <button className={styles.hintButton} onClick={toggleHint}>
