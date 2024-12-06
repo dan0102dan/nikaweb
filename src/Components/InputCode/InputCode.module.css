@@ -24,40 +24,11 @@
     border-color: var(--link-color);
 }
 
-.hintButton {
-    background: none;
-    border: none;
-    padding: 0 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.hintButton:hover .hintIcon {
-    color: var(--link-color);
-}
-
-.hintIcon {
-    font-size: 1.5rem;
-    color: var(--hint-color);
-    transition: color 0.3s ease;
-}
-
-.hintTextBlock {
-    margin: 12px 0 0;
-    font-size: 14px;
-    color: var(--text-color);
-    line-height: 1.4em;
-}
-
 .hintLink {
-    color: #007BFF;
-    text-decoration: underline;
+    margin: 0 0 12px;
+    font-size: 17px;
+    color: var(--hint-color);
     cursor: pointer;
-}
-
-.hintLink:hover {
-    text-decoration: none;
 }
 
 .hintOverlay {
@@ -103,7 +74,7 @@
 }
 
 .hintImage {
-    max-width: 69vw;
+    max-width: 61vw;
     max-height: 69vh;
     width: auto;
     height: auto;

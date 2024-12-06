@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styles from './InputCode.module.css'
-import { FaQuestionCircle } from 'react-icons/fa'
 import { Button } from '../index'
 import example from './example.jpg'
 
@@ -17,6 +16,9 @@ const InputCode = ({ value, onChange, onConfirm }) => {
 
     return (
         <div className={styles.inputContainer}>
+            <div className={styles.hintLink} onClick={toggleHint}>
+                Где найти номер
+            </div>
             <div className={styles.inputRow}>
                 <input
                     type="text"
@@ -27,18 +29,7 @@ const InputCode = ({ value, onChange, onConfirm }) => {
                     placeholder="Ваш номер, например: 14.3S2613"
                     className={styles.input}
                 />
-                <button className={styles.hintButton} onClick={toggleHint}>
-                    <FaQuestionCircle className={styles.hintIcon} />
-                </button>
             </div>
-
-            <div className={styles.hintTextBlock}>
-                Номер фотографии можно найти на А4, который был выдан Вам после фотосъёмки.{' '}
-                <span className={styles.hintLink} onClick={toggleHint}>
-                    Где найти номер?
-                </span>
-            </div>
-
             <div
                 className={`${styles.hintOverlay} ${showHint ? styles.show : ''}`}
                 onClick={toggleHint}
