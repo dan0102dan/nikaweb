@@ -16,7 +16,7 @@ const Root = () => {
 
         const inputCode = code.trim().toUpperCase()
 
-        if (!inputCode || /\W(?!\.)/.test(inputCode)) {
+        if (!inputCode || /[^\w.]/.test(inputCode)) {
             setError('Пожалуйста, введите корректный номер.')
             setLoading(false)
             return
