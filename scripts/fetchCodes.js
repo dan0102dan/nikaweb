@@ -1,8 +1,8 @@
 import { api } from '../src/API.js'
 import fs from 'fs'
-const yandexKey = process.env.YANDEX_KEY
 
-console.log('Yandex Key:', yandexKey)
+console.log('Yandex Key:', process.env.YANDEX_KEY)
+console.log('TEST:', process.env.TEST)
 
 async function fetchAllFiles () {
     const limit = 100
