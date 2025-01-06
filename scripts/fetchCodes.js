@@ -1,9 +1,6 @@
 import { api } from '../src/API.js'
 import fs from 'fs'
 
-console.log('Yandex Key:', process.env.YANDEX_KEY)
-console.log('TEST:', process.env.TEST)
-
 async function fetchAllFiles () {
     const limit = 100
     let offset = 0
@@ -44,8 +41,8 @@ async function fetchAllFiles () {
         fs.writeFileSync('src/routes/Root/data.json', JSON.stringify(allItems))
         console.log('Файл data.json успешно сохранен.')
     } catch (e) {
-        console.error('Ошибка при получении данных:', e.message)
-        return
+        console.error('Ошибка при получении данных:', e)
+        throw e
     }
 }
 

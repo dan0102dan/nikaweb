@@ -31,7 +31,6 @@ jobs:
         run: node scripts/fetchCodes.js
         env:
           YANDEX_KEY: ${{ secrets.YANDEX_KEY }}
-          TEST: 'test'
 
       # Шаг 5: Деплой на GitHub Pages
       - name: Build and deploy
