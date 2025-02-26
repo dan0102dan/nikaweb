@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.be5dcaa0.css",
+    "main.js": "/static/js/main.76a3686b.js",
+    "static/media/example.jpg": "/static/media/example.dc73dc549b0a0bc96919.jpg",
+    "static/media/t_me-fotonika.jpg": "/static/media/t_me-fotonika.2709b3b18c08f74374dd.jpg",
+    "static/media/text.png": "/static/media/text.5b8bb3d93704d5787ca2.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.be5dcaa0.css",
+    "static/js/main.76a3686b.js"
+  ]
+}
