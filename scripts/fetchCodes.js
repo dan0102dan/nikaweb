@@ -2,7 +2,7 @@ import { api } from '../src/API.js'
 import fs from 'fs'
 
 async function fetchAllFiles () {
-    const limit = 100
+    const limit = 10000
     let offset = 0
     let allItems = []
     let hasMore = true
