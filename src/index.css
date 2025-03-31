@@ -1,28 +1,425 @@
 :root {
-  --bg-color: #F7F7F7;
-  --secondary-bg-color: #FFFFFF;
+  --bg-color: #fef6e6;
+  --secondary-bg-color: #ffffff;
   --text-color: #333333;
   --hint-color: #007BFF;
-  --link-color: #ff5445;
-  --button-text-color: #FFFFFF;
-  --button-bg: #fd6253;
+  --link-color: #f65737;
+  --button-text-color: #ffffff;
+  --button-bg: #f35546;
+  --max-width: 900px;
+  --page-padding: 1.5rem;
+  --container-padding: 2rem;
+  --border-radius: 16px;
+  --font-family: 'Balsamiq Sans', 'PT Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+  --title-font-size: 1.8rem;
+  --subtitle-font-size: 1.2rem;
+  --base-font-size: 1.2rem;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: 'PT Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    sans-serif;
+  background-color: var(--bg-color);
+  background-image: url('./assets/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background-color: var(--secondary-bg-color);
+  padding: 0 var(--page-padding);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-html::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none;
+/* ======================================= */
+/*         Базовые стили для контейнеров  */
+/* ======================================= */
+.glassContainer {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: var(--container-padding);
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Модификаторы для glassContainer */
+
+/* Для Header (убираем верхний отступ и задаём закругление только снизу) */
+.glassContainer--header {
+  padding-top: 0;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+/* Для блока с кодом (InputCode) – полное закругление и немного меньшее размытие */
+.glassContainer--input {
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Для QRCodeBlock – центрирование и закругление верхней части */
+.glassContainer--qr {
+  margin: 0 auto;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* ======================================= */
+/*             Стили Header               */
+/* ======================================= */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0 var(--page-padding) 0;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  background-image: url('./assets/camera.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+  transition: background-position 0.5s ease, background-size 0.5s ease;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
+}
+
+.header .title {
+  margin-bottom: 0;
+  /* Для Header заголовка */
+}
+
+.highlight {
+  color: var(--link-color);
+}
+
+.imageBackground {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-position: center;
+  transform: rotate(15deg);
+  overflow: hidden;
+}
+
+.content {
+  margin-top: 1rem;
+}
+
+/* Подзаголовок – общий стиль, можно задавать модификаторы при необходимости */
+.subtitle {
+  font-size: var(--subtitle-font-size);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.8rem 0;
+}
+
+.header .subtitle {
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+}
+
+.icon {
+  margin-right: 8px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#iconMapPin {
+  width: 28px;
+  height: 28px;
+  color: #f63434;
+}
+
+#iconMail {
+  width: 28px;
+  height: 28px;
+  color: #62A648;
+}
+
+.emailLink {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+/* ======================================= */
+/*           Стили InputCode              */
+/* ======================================= */
+.inputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 0 var(--page-padding) 0;
+}
+
+/* Здесь используем общий класс .title, который уже задан выше */
+
+.hintLink {
+  margin-bottom: 10px;
+  font-size: var(--subtitle-font-size);
+  color: var(--link-color);
+  cursor: pointer;
+  text-align: center;
+}
+
+.hintLink:hover {
+  text-decoration: underline;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  font-size: var(--base-font-size);
+  padding: 10px;
+  border: 2px solid var(--secondary-bg-color);
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.input:focus {
+  border-color: var(--link-color);
+}
+
+.error {
+  margin-top: 0.75rem;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.success {
+  margin-top: 0.75rem;
+  color: #2ecc71;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.hintOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.hintOverlay.show {
+  opacity: 1;
+  visibility: visible;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hintContent {
+  background-color: var(--secondary-bg-color);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  box-sizing: border-box;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hintOverlay.show .hintContent {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ======================================= */
+/*          Стили QRCodeBlock             */
+/* ======================================= */
+/* Для QRCodeBlock также используется общий .title и .subtitle */
+.qrImage {
+  text-align: center;
+}
+
+.qrImage img {
+  width: 270px;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  border-radius: calc(var(--border-radius) * 2.25);
+}
+
+.qrImage:hover img {
+  transform: scale(1.03);
+}
+
+/* ======================================= */
+/*          Стили Logo             */
+/* ======================================= */
+
+.logo {
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  width: clamp(100px, 10vw, 500px);
+  opacity: 0.85;
+  transform-origin: center;
+  animation: subtleSpin 60s linear infinite;
+  /* медленный поворот */
+  transition: opacity 0.3s ease;
+}
+
+/* При наведении делаем солнышко ярче и, например, останавливаем анимацию */
+.logo:hover {
+  opacity: 1;
+  animation-play-state: paused;
+  /* останавливаем вращение при hover */
+}
+
+
+.bottomScene {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(55px, 15vw, 200px);
+  pointer-events: none;
+  z-index: 900;
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  height: 100%;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.hintImage {
+  max-width: 82vw;
+  max-height: 69vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+
+/* ======================================= */
+/*              Медиа-запросы             */
+/* ======================================= */
+@media screen and (max-width: 455px) {
+  .title {
+    font-size: calc(var(--title-font-size) * 0.8);
+    /* Если нужно скорректировать отступы для не-Header заголовков: */
+    margin-bottom: 0.5rem;
+  }
+
+  .imageBackground {
+    max-width: 110px;
+  }
+
+  .subtitle {
+    font-size: calc(var(--subtitle-font-size) * 0.8);
+  }
+
+  /* Для InputCode */
+  .glassContainer--input {
+    padding: 0.8rem;
+  }
+
+  .hintLink {
+    font-size: calc(var(--subtitle-font-size) * 0.8);
+  }
+
+  .input {
+    font-size: calc(var(--base-font-size) * 0.8);
+    padding: 8px;
+  }
+
+  .inputRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+}
+
+@media screen and (max-width: 322px) {
+  .qrImage {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 622px) {
+  .headerRow {
+    background-size: 13% auto;
+    background-position: right top;
+  }
+}
+
+@keyframes subtleSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

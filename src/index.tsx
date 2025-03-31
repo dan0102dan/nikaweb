@@ -4,7 +4,7 @@ import {
   createHashRouter,
   RouterProvider,
 } from 'react-router-dom'
-import { ErrorPage, Root } from './routes/index'
+import { Root } from './routes/index'
 import './index.css'
 
 // Create a router instance with defined routes
@@ -12,7 +12,7 @@ const router = createHashRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   }
 ])
 

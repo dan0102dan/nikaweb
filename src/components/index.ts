@@ -1,0 +1,6 @@
+export { default as Button } from './Button/Button'
+export { default as InputCode } from './InputCode/InputCode'
+export { default as QRCodeBlock } from './QRCodeBlock/QRCodeBlock'
+export { default as Header } from './Header/Header'
+export { default as Logo } from './Logo/Logo'
+export { default as BottomScene } from './BottomScene/BottomScene'
