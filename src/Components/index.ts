@@ -1,8 +1,0 @@
-export { default as Button } from './Button/Button'
-export { default as MiniCell } from './MiniCell/MiniCell'
-export { default as InputCode } from './InputCode/InputCode'
-export { default as Placeholder } from './Placeholder/Placeholder'
-export { default as Section } from './Section/Section'
-export { default as HorizontalList } from './HorizontalList/HorizontalList'
-export { default as QRCodeBlock } from './QRCodeBlock/QRCodeBlock'
-export { default as Header } from './Header/Header'

@@ -12,33 +12,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # Шаг 1: Клонирование репозитория
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Шаг 2: Настройка Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
-      # Шаг 3: Установка зависимостей
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # Шаг 4: Запуск скрипта для обновления names.json
       - name: Run fetchCodes script
         run: node scripts/fetchCodes.js
         env:
           YANDEX_KEY: ${{ secrets.YANDEX_KEY }}
 
-      # Шаг 5: Деплой на GitHub Pages
-      - name: Build and deploy
-        run: |
-          npm run build
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Action"
-          git checkout --orphan gh-pages
-          git --work-tree build add --all
-          git --work-tree build commit -m "GitHub Pages deployment"
-          git push origin HEAD:gh-pages --force
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          keep_files: false

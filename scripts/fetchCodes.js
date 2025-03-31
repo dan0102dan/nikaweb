@@ -38,7 +38,7 @@ async function fetchAllFiles () {
 
         console.log(`Всего получено элементов: ${allItems.length}`)
 
-        fs.writeFileSync('src/routes/Root/data.json', JSON.stringify(allItems))
+        fs.writeFileSync('src/data/data.json', JSON.stringify(allItems))
         console.log('Файл data.json успешно сохранен.')
     } catch (e) {
         console.error('Ошибка при получении данных:', e)
